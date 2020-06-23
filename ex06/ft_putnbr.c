@@ -1,45 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   final_countdown.c                                  :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmehloma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/22 10:17:42 by mmehloma          #+#    #+#             */
-/*   Updated: 2020/06/22 10:54:46 by mmehloma         ###   ########.fr       */
+/*   Created: 2020/06/22 11:18:06 by mmehloma          #+#    #+#             */
+/*   Updated: 2020/06/22 11:33:16 by mmehloma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void ft_putchar(char c)
+void ft_putchar(char a)
 {
-	write(1, &c, sizeof(char));
+	write(1, &a, sizeof(char));
 }
 
-void ft_print_comd2(void)
+void ft_putnbr(int nb)
 {
-	char f, s;
-
-	f = 0;
-	while(f < 99)
+	if(nb < 10 && nb >= 0)
 	{
-		s = f + 1;
-		while(s <= 99)
-		{
-			ft_putchar(f / 10 + '0');
-			ft_putchar(f % 10 + '0');
-			ft_putchar(' ');
-			ft_putchar(s / 10 + '0');
-			ft_putchar(s % 10 + '0');
-			if(f != 98)
-			{
-			ft_putchar(',');
-			ft_putchar(' ');
-			}
-			s++;
-		}
-	f++;
+		ft_putchar(nb + '0');
 	}
-
+	else if(nb >= 10)
+	{
+		ft_putnbr(nb / 10);
+		ft_putchar(nb % 10 + '0');
+		if(nb < 0)
+			ft_putchar('-');
+	}
+	else
+	{
+		ft_putchar('-');
+		ft_putnbr(nb* -1);
+	}
 }
